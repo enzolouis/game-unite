@@ -27,5 +27,4 @@ replay_pid*
 # Others
 bin
 .settings
-.project
 .classpath
