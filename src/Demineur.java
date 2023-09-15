@@ -6,6 +6,7 @@ public class Demineur {
 	private int length;
 	private int[][] grid;
 	private ArrayList<Point> bombes;
+	private int test2;
 
 	public Demineur(int length) {
 		this.length = length;
