@@ -108,7 +108,7 @@ public class Demineur {
 			for (int h = -1; h <= 1; h++) {
 				for (int k = -1; k <= 1; k++) {
 					if (h == 0 && k == 0) {
-						continue; // On ne doit pas compter la case sur laquel on est
+						continue;
 					}
 					int pos1 = p.x + h;
 					int pos2 = p.y + k;
