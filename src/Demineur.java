@@ -142,6 +142,7 @@ public class Demineur {
 			if (po.x != -1) // et y != -1 (test tempo)
 				demineur.grid[po.x][po.y] = 8;
 		}
+		
 		demineur.showGrid();
 	}
 }
