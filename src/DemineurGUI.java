@@ -1,21 +1,19 @@
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class DemineurGUI extends JFrame {
-	private static final Image FLAG = new ImageIcon(("./src/flag.png"))
-			.getImage();
+
 	private JPanel contentPane;
 	private Demineur game;
 	private int size;
+	private Case[][] buttons;
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +57,7 @@ public class DemineurGUI extends JFrame {
 	 */
 	public DemineurGUI(int size) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, size*20, size*20);
+		setBounds(100, 100, size*35, size*35);
 		contentPane = new JPanel();
 		this.size=size;
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,16 +65,21 @@ public class DemineurGUI extends JFrame {
 		setContentPane(contentPane);
 		this.game=new Demineur(size);
 		this.init();
-		
+		for (int i =0;i<size;i++) {
+			for (int y=0;y<size;y++) {
+				this.buttons[i][y].addMouseListener(new MouseControler(this.game));
+			}
+		}
+				
 	}
 	
 	public void init() {
    	    GridLayout gridLayout = new GridLayout(size, size);
 	    contentPane.setLayout(gridLayout);
-	    JButton[][] buttons = new JButton[size][size];
+	    this.buttons = new Case[size][size];
 	    for (int i = 0; i < size; i++) {
 	        for (int j = 0; j < size; j++) {
-	            buttons[i][j] = new JButton();
+	            buttons[i][j] = new Case(i,j);
 	            contentPane.add(buttons[i][j]);
 	        }
 	    }

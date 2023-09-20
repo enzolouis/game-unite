@@ -34,7 +34,10 @@ public class Demineur {
 			}
 		}
 	}
-
+	public int getCase(int x, int y) {
+		return this.grid[x][y];
+	}
+	
 	public void generateGrid() {
 		this.generateRandomBombe();
 		for (int i = 0; i < this.length; i++) {
