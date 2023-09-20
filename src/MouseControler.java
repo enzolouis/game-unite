@@ -10,6 +10,8 @@ public class MouseControler extends MouseAdapter {
 	private Demineur demineur;
 	private Case[][] buttons;
 	private static final ImageIcon FLAG = new ImageIcon(("./src/flag.png"));
+	private static final ImageIcon BOMBE = new ImageIcon(("./src/bombe.png"));
+
 	public MouseControler(Demineur demineur, Case[][] buttons) {
 		this.demineur=demineur;
 		this.buttons=buttons;
@@ -34,7 +36,17 @@ public class MouseControler extends MouseAdapter {
         		}
             } else if(this.demineur.getCase(x, y)!=9) {
             	this.buttons[x][y].setEnabled(false);
-            	this.buttons[x][y].showArea();
+            	this.buttons[x][y].showArea();	
+            } else {
+            	for (int i=0;i<this.demineur.getSize();i++) {
+            		for (int j=0;j<this.demineur.getSize();j++) {
+            			if (this.demineur.getCase(i, j)==9) {
+                			this.buttons[i][j].showArea();
+                			this.buttons[i][j].setIcon(BOMBE);
+            			}
+            		}
+            	}
+            	System.out.println("game over ");
             }
             
         } else if (e.getButton() == MouseEvent.BUTTON3) {

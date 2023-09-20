@@ -19,6 +19,9 @@ public class Demineur {
 	private int calculateNbBombe(int length) {
 		return (int) Math.round(0.2 * (length * length) - 10);
 	}
+	public int getSize() {
+		return this.length;
+	}
 
 	private void generateRandomBombe() {
 		Random random = new Random();
