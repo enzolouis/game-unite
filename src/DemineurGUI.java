@@ -72,7 +72,7 @@ public class DemineurGUI extends JFrame {
 	    this.buttons = new Case[size][size];
 	    for (int i = 0; i < size; i++) {
 	        for (int j = 0; j < size; j++) {
-	            buttons[i][j] = new Case((this.game.getCase(i, j) != 0) ? Integer.toString(this.game.getCase(i, j)) : "", i,j);
+	            buttons[i][j] = new Case(this.game.getCase(i, j), i,j);
 	            contentPane.add(buttons[i][j]);
 	        }
 	    }
