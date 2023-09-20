@@ -17,6 +17,19 @@ public class Demineur {
 		this.length = length;
 		this.grid = new int[length][length];
 		this.bombes = new ArrayList<>();
+		this.generateGrid();
+		this.showGrid();
+		for (int x = 0; x < 100 ; x++) {
+			for (int y = 0; y < 100 ; y++) {
+				try {
+					System.out.print(this.grid[x][y]);
+				} catch (Exception e) {
+					break;
+				}
+			}
+			System.out.println(" ");
+		}
+		System.out.println("blabla\n\n-----------");
 	}
 
 	private int calculateNbBombe(int length) {
@@ -82,7 +95,6 @@ public class Demineur {
 	}
 	
 	public void showCaseWithNumberNearEmptyCase(List<Point> points) {
-		points.add(new Point(-1, -1));
 		List<Point> points_temp = new ArrayList<>(points);
 		for (Point p : points_temp) {
 			for (int i = -1; i <= 1; i++) {
@@ -129,7 +141,8 @@ public class Demineur {
 	}
 
 	public static void main(String[] args) {
-		Demineur demineur = new Demineur(15);
+		/*
+		Demineur demineur = new Demineur(10);
 		demineur.generateGrid();
 		demineur.showGrid();
 
@@ -147,5 +160,6 @@ public class Demineur {
 		}
 		
 		demineur.showGrid();
+		*/
 	}
 }

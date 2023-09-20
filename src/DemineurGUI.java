@@ -14,12 +14,9 @@ public class DemineurGUI extends JFrame {
 	private Demineur game;
 	private int size;
 	private Case[][] buttons;
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-
 			@Override
 			public void run() {
 				try {
@@ -52,9 +49,7 @@ public class DemineurGUI extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public DemineurGUI(int size) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, size*35, size*35);
@@ -67,10 +62,19 @@ public class DemineurGUI extends JFrame {
 		this.init();
 		for (int i =0;i<size;i++) {
 			for (int y=0;y<size;y++) {
-				this.buttons[i][y].addMouseListener(new MouseControler(this.game));
+				this.buttons[i][y].addMouseListener(new MouseControler(this.game, this.buttons));
 			}
 		}
-				
+		for (int x = 0; x < 100 ; x++) {
+			for (int y = 0; y < 100 ; y++) {
+				try {
+					System.out.print(this.buttons[x][y].getPositionGrid());
+				} catch (Exception e) {
+					break;
+				}
+			}
+			System.out.println(" ");
+		}
 	}
 	
 	public void init() {
@@ -79,10 +83,9 @@ public class DemineurGUI extends JFrame {
 	    this.buttons = new Case[size][size];
 	    for (int i = 0; i < size; i++) {
 	        for (int j = 0; j < size; j++) {
-	            buttons[i][j] = new Case(i,j);
+	            buttons[i][j] = new Case((this.game.getCase(j, i) != 0) ? Integer.toString(this.game.getCase(j, i)) : "", i,j);
 	            contentPane.add(buttons[i][j]);
 	        }
 	    }
 	}
-
 }
