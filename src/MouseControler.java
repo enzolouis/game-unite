@@ -32,6 +32,9 @@ public class MouseControler extends MouseAdapter {
         			this.buttons[p.x][p.y].showArea();
         			this.buttons[p.x][p.y].setEnabled(false);
         		}
+            } else if(this.demineur.getCase(x, y)!=9) {
+            	this.buttons[x][y].setEnabled(false);
+            	this.buttons[x][y].showArea();
             }
             
         } else if (e.getButton() == MouseEvent.BUTTON3) {

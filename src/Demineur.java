@@ -1,12 +1,7 @@
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class Demineur {
 	private int length;
@@ -19,17 +14,6 @@ public class Demineur {
 		this.bombes = new ArrayList<>();
 		this.generateGrid();
 		this.showGrid();
-		for (int x = 0; x < 100 ; x++) {
-			for (int y = 0; y < 100 ; y++) {
-				try {
-					System.out.print(this.grid[x][y]);
-				} catch (Exception e) {
-					break;
-				}
-			}
-			System.out.println(" ");
-		}
-		System.out.println("blabla\n\n-----------");
 	}
 
 	private int calculateNbBombe(int length) {
@@ -140,26 +124,5 @@ public class Demineur {
 		}
 	}
 
-	public static void main(String[] args) {
-		/*
-		Demineur demineur = new Demineur(10);
-		demineur.generateGrid();
-		demineur.showGrid();
-
-		List<Point> p = new ArrayList<Point>();
-		
-		demineur.recursiveDeployEmptyCase(new Point(5, 5), p);
-		demineur.showCaseWithNumberNearEmptyCase(p);
-		System.out.println("-------");
-		System.out.println("-------");
-		for (Point po : p) {
-			System.out.println("(" + po.x + "," + po.y + ")");
-			
-			if (po.x != -1) // et y != -1 (test tempo)
-				demineur.grid[po.x][po.y] = 8;
-		}
-		
-		demineur.showGrid();
-		*/
-	}
+	
 }

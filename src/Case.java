@@ -3,7 +3,6 @@ import java.awt.Point;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.border.Border;
 
 public class Case extends JButton {
 	private Point positionGrid;

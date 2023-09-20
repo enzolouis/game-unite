@@ -1,8 +1,5 @@
 import java.awt.EventQueue;
 import java.awt.GridLayout;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -65,16 +62,8 @@ public class DemineurGUI extends JFrame {
 				this.buttons[i][y].addMouseListener(new MouseControler(this.game, this.buttons));
 			}
 		}
-		for (int x = 0; x < 100 ; x++) {
-			for (int y = 0; y < 100 ; y++) {
-				try {
-					System.out.print(this.buttons[x][y].getPositionGrid());
-				} catch (Exception e) {
-					break;
-				}
-			}
-			System.out.println(" ");
-		}
+
+
 	}
 	
 	public void init() {
@@ -83,7 +72,7 @@ public class DemineurGUI extends JFrame {
 	    this.buttons = new Case[size][size];
 	    for (int i = 0; i < size; i++) {
 	        for (int j = 0; j < size; j++) {
-	            buttons[i][j] = new Case((this.game.getCase(j, i) != 0) ? Integer.toString(this.game.getCase(j, i)) : "", i,j);
+	            buttons[i][j] = new Case((this.game.getCase(i, j) != 0) ? Integer.toString(this.game.getCase(i, j)) : "", i,j);
 	            contentPane.add(buttons[i][j]);
 	        }
 	    }
