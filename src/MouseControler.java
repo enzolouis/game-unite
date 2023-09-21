@@ -3,6 +3,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
@@ -21,37 +23,45 @@ public class MouseControler extends MouseAdapter {
     	Case btn = (Case) e.getSource();
     	int x = btn.getPositionGrid().x;
         int y = btn.getPositionGrid().y;
-        System.out.println(x + ";" + y + ";" + this.demineur.getCase(x, y));
         if (e.getButton() == MouseEvent.BUTTON1) {
-            System.out.println("Clic gauche");
-            if(this.demineur.getCase(x, y)==0) {
-            	List<Point> points = new ArrayList<Point>();
-        		
-        		demineur.recursiveDeployEmptyCase(new Point(x, y), points);
-        		demineur.showCaseWithNumberNearEmptyCase(points);
-        		
-        		for (Point p : points) {
-        			this.buttons[p.x][p.y].showArea();
-        			this.buttons[p.x][p.y].setEnabled(false);
-        		}
-            } else if(this.demineur.getCase(x, y)!=9) {
-            	this.buttons[x][y].setEnabled(false);
-            	this.buttons[x][y].showArea();	
-            } else {
-            	for (int i=0;i<this.demineur.getSize();i++) {
-            		for (int j=0;j<this.demineur.getSize();j++) {
-            			if (this.demineur.getCase(i, j)==9) {
-                			this.buttons[i][j].showArea();
-                			this.buttons[i][j].setIcon(BOMBE);
-            			}
-            		}
-            	}
-            	System.out.println("game over ");
-            }
+        	if (!this.buttons[x][y].isFlaged() && this.buttons[x][y].isEnabled()) {
+	            if(this.demineur.getCase(x, y)==0) {
+	            	List<Point> points = new ArrayList<Point>();
+	        		demineur.recursiveDeployEmptyCase(new Point(x, y), points);
+	        		demineur.showCaseWithNumberNearEmptyCase(points);
+	        		for (Point p : points) {
+	        			this.buttons[p.x][p.y].showArea();
+	        			this.buttons[p.x][p.y].setEnabled(false);
+	        		}
+	            } else if(this.demineur.getCase(x, y)!=9) {
+	            	this.buttons[x][y].setEnabled(false);
+	            	this.buttons[x][y].showArea();	
+	            } else {
+	            	Timer bombeTimer = new Timer();
+	                for (int i = 0; i < demineur.getSize(); i++) {
+	                    for (int j = 0; j < demineur.getSize(); j++) {
+	                        final int finalI = i;
+	                        final int finalJ = j;
+	                        if (demineur.getCase(finalI, finalJ) == 9) {
+	                            bombeTimer.schedule(new TimerTask() {
+	                                @Override
+	                                public void run() {
+	                                    buttons[finalI][finalJ].showArea();
+	                                    buttons[finalI][finalJ].setIcon(BOMBE);
+	                                    System.out.println("Game over !");
+	                                }
+	                            }, 1000);
+	                            
+	                        } else {
+	                            buttons[finalI][finalJ].setEnabled(false);
+	                        }
+	                    }
+	                }
+                }
+        	}
             
         } else if (e.getButton() == MouseEvent.BUTTON3) {
-            System.out.println("Clic droit");
-            if (!btn.isDiscover()) {
+            if (!btn.isDiscover()&& btn.isEnabled()) {
             	if (btn.isFlaged()) {
                 	btn.setIcon(null);
                 } else {

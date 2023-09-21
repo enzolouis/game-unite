@@ -1,5 +1,7 @@
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.util.Timer;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -61,11 +63,8 @@ public class DemineurGUI extends JFrame {
 			for (int y=0;y<size;y++) {
 				this.buttons[i][y].addMouseListener(new MouseControler(this.game, this.buttons));
 			}
-		}
-
-
-	}
-	
+		}       
+    }
 	public void init() {
    	    GridLayout gridLayout = new GridLayout(size, size);
 	    contentPane.setLayout(gridLayout);
