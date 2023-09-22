@@ -22,6 +22,10 @@ public class Demineur {
 	public int getSize() {
 		return this.length;
 	}
+	
+	public List<Point> getBombeList() {
+		return bombes;
+	}
 
 	private void generateRandomBombe() {
 		Random random = new Random();
