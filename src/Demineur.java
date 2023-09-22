@@ -58,9 +58,6 @@ public class Demineur {
 					int nb = 0;
 					for (int h = -1; h <= 1; h++) {
 						for (int k = -1; k <= 1; k++) {
-							if (h == 0 && k == 0) {
-								continue; // On ne doit pas compter la case sur laquel on est
-							}
 							int pos1 = i + h;
 							int pos2 = j + k;
 							if (pos1 >= 0 && pos1 < this.length && pos2 >= 0 && pos2 < this.length) {
@@ -85,13 +82,13 @@ public class Demineur {
 		}
 	}
 	
-	public void showCaseWithNumberNearEmptyCase(List<Point> points) {
+	public void iterativeShowAdjacentNumberToEmptyCells(List<Point> points) {
 		List<Point> points_temp = new ArrayList<>(points);
 		for (Point p : points_temp) {
 			for (int i = -1; i <= 1; i++) {
 				for (int j = -1; j <= 1; j++) {
 					if (i == 0 && j == 0) {
-						continue;
+						continue; // permet d'eviter un tour inutile
 					}
 					
 					int pos1 = p.x + i;
@@ -109,20 +106,17 @@ public class Demineur {
 		}
 	}
 
-	public void recursiveDeployEmptyCase(Point p, List<Point> points) {
+	public void recursiveRevealEmptyCells(Point p, List<Point> points) {
 		if (grid[p.x][p.y] == 0) {
 			for (int h = -1; h <= 1; h++) {
 				for (int k = -1; k <= 1; k++) {
-					if (h == 0 && k == 0) {
-						continue;
-					}
 					int pos1 = p.x + h;
 					int pos2 = p.y + k;
 					if (!points.contains(new Point(pos1, pos2))) {
 						if (pos1 >= 0 && pos1 < this.length && pos2 >= 0 && pos2 < this.length) {
 							if (this.grid[pos1][pos2] == 0) {
 								points.add(new Point(pos1, pos2));
-								recursiveDeployEmptyCase(new Point(pos1, pos2), points);
+								recursiveRevealEmptyCells(new Point(pos1, pos2), points);
 							}
 						}
 					}
