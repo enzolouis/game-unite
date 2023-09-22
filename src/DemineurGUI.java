@@ -59,11 +59,12 @@ public class DemineurGUI extends JFrame {
 		setContentPane(contentPane);
 		this.game=new Demineur(size);
 		this.init();
-		for (int i =0;i<size;i++) {
-			for (int y=0;y<size;y++) {
-				this.buttons[i][y].addMouseListener(new MouseControler(this.game, this.buttons));
-			}
-		}       
+		MouseControler controler = new MouseControler(this.game, this.buttons);
+		for (int i = 0; i < size; i++) {
+	        for (int j = 0; j < size; j++) {
+	            buttons[i][j].addMouseListener(controler);
+	        }
+	    }
     }
 	public void init() {
    	    GridLayout gridLayout = new GridLayout(size, size);

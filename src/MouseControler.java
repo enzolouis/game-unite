@@ -32,8 +32,8 @@ public class MouseControler extends MouseAdapter {
         	if (!this.buttons[x][y].isFlaged() && this.buttons[x][y].isEnabled()) {
 	            if (this.demineur.getCase(x, y) == 0) {
 	            	List<Point> points = new ArrayList<Point>();
-	        		demineur.recursiveDeployEmptyCase(new Point(x, y), points);
-	        		demineur.showCaseWithNumberNearEmptyCase(points);
+	        		demineur.recursiveRevealEmptyCells(new Point(x, y), points);
+	        		demineur.iterativeShowAdjacentNumberToEmptyCells(points);
 	        		
 	        		ActionListener action = new ActionListener() {
 	        			Iterator<Point> caseToDeployList = points.listIterator();
