@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,28 +35,34 @@ public class MouseControler extends MouseAdapter {
 	            	List<Point> points = new ArrayList<Point>();
 	        		demineur.recursiveRevealEmptyCells(new Point(x, y), points);
 	        		demineur.iterativeShowAdjacentNumberToEmptyCells(points);
-	        		
 	        		ActionListener action = new ActionListener() {
 	        			Iterator<Point> caseToDeployList = points.listIterator();
 	        		    @Override
 	        		    public void actionPerformed(ActionEvent e) {
         		    		if (caseToDeployList.hasNext()) {
         		    			Point nxt = caseToDeployList.next();
+	        		    		buttons[nxt.x][nxt.y].showArea(true);
 	        		    		buttons[nxt.x][nxt.y].setEnabled(false);
-	        		    		buttons[nxt.x][nxt.y].showArea();
+	        		    	} else {
+	        		    		deployArea.stop();
+	        		    	}
+        		    		if (caseToDeployList.hasNext()) {
+        		    			Point nxt = caseToDeployList.next();
+	        		    		buttons[nxt.x][nxt.y].showArea(true);
+	        		    		buttons[nxt.x][nxt.y].setEnabled(false);
 	        		    	} else {
 	        		    		deployArea.stop();
 	        		    	}
 	        		    }
 	        		};
 	        		
-	        		deployArea = new Timer(2, action);
+	        		deployArea = new Timer(1, action);
 	        		deployArea.start();
 	        		deployArea.setRepeats(true);
 	        		
 	            } else if(this.demineur.getCase(x, y)!=9) {
 	            	this.buttons[x][y].setEnabled(false);
-	            	this.buttons[x][y].showArea();	
+	            	this.buttons[x][y].showArea(false);	
 	            } else {
 	            	this.buttons[x][y].setIcon(BOMBE);
 	            	for (int i = 0;i<this.demineur.getSize();i++) {
