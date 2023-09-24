@@ -94,4 +94,24 @@ public class MouseControler extends MouseAdapter {
                	btn.setIcon(btn.isFlaged() ? null : FLAG);
         }
     }
+    
+    @Override
+	public void mouseEntered(MouseEvent e) {
+		Case btn = (Case) e.getComponent();
+		if (!btn.isDiscover())
+			// 90,165,216
+			btn.setBackground(new Color(
+				btn.getBackground().getRed() + (Case.DISCOVER_COLOR.getRed() - btn.getBackground().getRed()) / 4,
+				btn.getBackground().getGreen() + (Case.DISCOVER_COLOR.getGreen() - btn.getBackground().getGreen()) / 4,
+				btn.getBackground().getBlue() + (Case.DISCOVER_COLOR.getBlue() - btn.getBackground().getBlue()) / 4
+			));
+	}
+    
+    @Override
+	public void mouseExited(MouseEvent e) {
+		Case btn = (Case) e.getComponent();
+		if (!btn.isDiscover())
+			btn.setBackground(btn.getInitialBackground());
+	}
+
 }
