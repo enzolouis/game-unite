@@ -1,7 +1,6 @@
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.util.Timer;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
