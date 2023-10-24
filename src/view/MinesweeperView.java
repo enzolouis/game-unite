@@ -1,3 +1,4 @@
+package view;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.util.Timer;
@@ -6,12 +7,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class DemineurGUI extends JFrame {
+import controller.MinesweeperMouseController;
+import model.MinesweeperModel;
+
+public class MinesweeperView extends JFrame {
 
 	private JPanel contentPane;
-	private Demineur game;
+	private MinesweeperModel game;
 	private int size;
-	private Case[][] buttons;
+	private MinesweeperCase[][] buttons;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -34,7 +38,7 @@ public class DemineurGUI extends JFrame {
 					tempFrame.dispose();
 					if (result != null) {
 						tempFrame.dispose();
-						DemineurGUI frame = new DemineurGUI(size2);
+						MinesweeperView frame = new MinesweeperView(size2);
 						frame.setVisible(true);
 					} else {
 						System.exit(0);
@@ -48,7 +52,7 @@ public class DemineurGUI extends JFrame {
 	}
 
 	
-	public DemineurGUI(int size) {
+	public MinesweeperView(int size) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, size*35, size*35);
 		contentPane = new JPanel();
@@ -56,9 +60,9 @@ public class DemineurGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setTitle("Demineur");
 		setContentPane(contentPane);
-		this.game=new Demineur(size);
+		this.game=new MinesweeperModel(size);
 		this.init();
-		MouseControler controler = new MouseControler(this.game, this.buttons);
+		MinesweeperMouseController controler = new MinesweeperMouseController(this.game, this.buttons);
 		for (int i = 0; i < size; i++) {
 	        for (int j = 0; j < size; j++) {
 	            buttons[i][j].addMouseListener(controler);
@@ -68,10 +72,10 @@ public class DemineurGUI extends JFrame {
 	public void init() {
    	    GridLayout gridLayout = new GridLayout(size, size);
 	    contentPane.setLayout(gridLayout);
-	    this.buttons = new Case[size][size];
+	    this.buttons = new MinesweeperCase[size][size];
 	    for (int i = 0; i < size; i++) {
 	        for (int j = 0; j < size; j++) {
-	            buttons[i][j] = new Case(this.game.getCase(i, j), i,j);
+	            buttons[i][j] = new MinesweeperCase(this.game.getCase(i, j), i,j);
 	            contentPane.add(buttons[i][j]);
 	        }
 	    }

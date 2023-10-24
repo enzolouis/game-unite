@@ -1,3 +1,4 @@
+package view;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -6,7 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.Timer;
 
-public class Case extends JButton {
+public class MinesweeperCase extends JButton {
 	private Point positionGrid;
 	private boolean discover;
 	private int value;
@@ -17,7 +18,7 @@ public class Case extends JButton {
 	private ActionListener action;
 	private Color initialBackground;
 	
-	public Case(int value, int x, int y) {
+	public MinesweeperCase(int value, int x, int y) {
 		super();
 		this.discover = false;
 		this.value = value;

@@ -1,3 +1,4 @@
+package controller;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -9,24 +10,27 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.Timer;
 
+import model.MinesweeperModel;
+import view.MinesweeperCase;
+
 import javax.swing.ImageIcon;
 
-public class MouseControler extends MouseAdapter {
-	private Demineur demineur;
-	private Case[][] buttons;
+public class MinesweeperMouseController extends MouseAdapter {
+	private MinesweeperModel demineur;
+	private MinesweeperCase[][] buttons;
 	private static final ImageIcon FLAG = new ImageIcon("./src/flag.png");
 	private static final ImageIcon BOMBE = new ImageIcon("./src/bombe.png");
 	private Timer showBomb;
 	private Timer deployArea;
 
-	public MouseControler(Demineur demineur, Case[][] buttons) {
+	public MinesweeperMouseController(MinesweeperModel demineur, MinesweeperCase[][] buttons) {
 		this.demineur = demineur;
 		this.buttons = buttons;
 	}
 	
     @Override
     public void mousePressed(MouseEvent e) {
-    	Case btn = (Case) e.getSource();
+    	MinesweeperCase btn = (MinesweeperCase) e.getSource();
     	int x = btn.getPositionGrid().x;
         int y = btn.getPositionGrid().y;
         if (e.getButton() == MouseEvent.BUTTON1) {
@@ -97,19 +101,19 @@ public class MouseControler extends MouseAdapter {
     
     @Override
 	public void mouseEntered(MouseEvent e) {
-		Case btn = (Case) e.getComponent();
+		MinesweeperCase btn = (MinesweeperCase) e.getComponent();
 		if (!btn.isDiscover())
 			// 90,165,216
 			btn.setBackground(new Color(
-				btn.getBackground().getRed() + (Case.DISCOVER_COLOR.getRed() - btn.getBackground().getRed()) / 4,
-				btn.getBackground().getGreen() + (Case.DISCOVER_COLOR.getGreen() - btn.getBackground().getGreen()) / 4,
-				btn.getBackground().getBlue() + (Case.DISCOVER_COLOR.getBlue() - btn.getBackground().getBlue()) / 4
+				btn.getBackground().getRed() + (MinesweeperCase.DISCOVER_COLOR.getRed() - btn.getBackground().getRed()) / 4,
+				btn.getBackground().getGreen() + (MinesweeperCase.DISCOVER_COLOR.getGreen() - btn.getBackground().getGreen()) / 4,
+				btn.getBackground().getBlue() + (MinesweeperCase.DISCOVER_COLOR.getBlue() - btn.getBackground().getBlue()) / 4
 			));
 	}
     
     @Override
 	public void mouseExited(MouseEvent e) {
-		Case btn = (Case) e.getComponent();
+		MinesweeperCase btn = (MinesweeperCase) e.getComponent();
 		if (!btn.isDiscover())
 			btn.setBackground(btn.getInitialBackground());
 	}

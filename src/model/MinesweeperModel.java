@@ -1,14 +1,15 @@
+package model;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Demineur {
+public class MinesweeperModel {
 	private int length;
 	private int[][] grid;
 	private ArrayList<Point> bombes;
 
-	public Demineur(int length) {
+	public MinesweeperModel(int length) {
 		this.length = length;
 		this.grid = new int[length][length];
 		this.bombes = new ArrayList<>();
